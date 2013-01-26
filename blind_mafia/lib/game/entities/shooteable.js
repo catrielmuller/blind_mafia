@@ -16,6 +16,7 @@ EntityShooteable = ig.Entity.extend({
     zIndex: 50,
     correct: false,
     sound: '',
+    state: "alive",
     
     /* isMouseSensitive: true, */
 
@@ -60,17 +61,25 @@ EntityShooteable = ig.Entity.extend({
         //console.log('Estas escuchando el sonido: ' + $this.sound);
         
 //         $this.currentAnim = $this.anims[$this.png_alt];
-        $this.heart.play();
+        if($this.state == "alive"){
+            $this.heart.play();
+            $this.mouseover = true;
+        }
     },
     onClick: function($this){
-        $this.currentAnim = $this.anims.dying.rewind();
-        if($this.correct){
-            console.log('BOOM!');
-        }
-        else {
-            console.log('FAIL!');
-        }
+        $this.heart.stop();
         
+        if($this.state == "alive"){
+            $this.currentAnim = $this.anims.dying.rewind();
+            
+            $this.state = "dead";
+            if($this.correct){
+                console.log('BOOM!');
+            }
+            else {
+                console.log('FAIL!');
+            }
+        }        
     },
     
 });
