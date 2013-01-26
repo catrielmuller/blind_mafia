@@ -3,6 +3,7 @@ ig.module(
 )
 .requires(
     'impact.entity',
+    'impact.sound',
     'plugins.entityMouseSensitive',
     'plugins.events'
 )
@@ -45,13 +46,17 @@ EntityShooteable = ig.Entity.extend({
         this.addListener("onMouseOver", this.altImg, this);
         this.addListener("onMouseOut", this.orgImg, this);
         this.addListener("onClick", this.shoot, this);
+        
+        this.heart = new ig.Sound( 'media/sounds/latido_'+settings.audio+'.ogg', true );
     },
 
     orgImg: function($this){
         $this.currentAnim = $this.anims[$this.png];
+        $this.heart.stop();
     },
     altImg: function($this){
         $this.currentAnim = $this.anims[$this.png_alt];
+        $this.heart.play();
     },
     shoot: function($this){
 

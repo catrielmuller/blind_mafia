@@ -10,7 +10,7 @@ ig.module(
 ig.Level1 = ig.BaseLevel.extend({
 
     difficulty: 5,
-
+    
     background_img: 'media/level1bg.png',
     
     img_on_top: 'media/level1over.png',

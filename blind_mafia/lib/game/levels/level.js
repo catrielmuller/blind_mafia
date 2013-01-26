@@ -44,12 +44,13 @@ ig.BaseLevel = ig.Class.extend({
         // nos quedamos con el ultimo para la zona objetivo
         var zone = zones.pop();
 
-        console.log("Correct: " + zone);
+//         console.log("Correct: " + zone);
             
         // Y creamos la entidad con esa data
         ig.game.spawnEntity( EntityShooteable, zone.left, zone.top, { 
                 png: 0,
-                correct: true
+                correct: true,
+                audio: 1
             });
         
         var added = 1;
@@ -60,9 +61,10 @@ ig.BaseLevel = ig.Class.extend({
             zone = zones.pop();
             ig.game.spawnEntity( EntityShooteable, zone.left, zone.top, { 
                 png: 0,
-                correct: false
+                correct: false,
+                audio: added+1
             });
-            console.log("Rand: " + zone);
+//             console.log("Rand: " + zone);
             added += 1;
             
         }

@@ -79,7 +79,6 @@ ig.SoundManager = ig.Class.extend({
 				this.clips[path].push( a );
 			}
 		}
-		
 		return clip;
 	},
 	
@@ -276,10 +275,12 @@ ig.Sound = ig.Class.extend({
 	volume: 1,
 	currentClip: null,
 	multiChannel: true,
+    loop: false,
 	
-	
-	init: function( path, multiChannel ) {
+	init: function( path, loop, multiChannel ) {
+        this._endedCallbackBound = this._endedCallback.bind(this);
 		this.path = path;
+        this.loop = loop;
 		this.multiChannel = (multiChannel !== false);
 		
 		this.load();
@@ -310,6 +311,8 @@ ig.Sound = ig.Class.extend({
 		
 		this.currentClip = ig.soundManager.get( this.path );
 		this.currentClip.volume = ig.soundManager.volume * this.volume;
+        this.currentClip.addEventListener( 'ended', this._endedCallbackBound, false );
+        
 		this.currentClip.play();
 	},
 	
@@ -318,8 +321,15 @@ ig.Sound = ig.Class.extend({
 		if( this.currentClip ) {
 			this.currentClip.pause();
 			this.currentClip.currentTime = 0;
+//             this.stopped = true;
 		}
-	}
+	},
+	
+    _endedCallback: function() {
+        if( this.loop ) {
+            this.play();
+        }
+    }
 });
 
 ig.Sound.FORMAT = {
