@@ -35,11 +35,18 @@ EntityShooteable = ig.Entity.extend({
         for (var i=0;i<30;i++){
             walking.push(i);
         }
+        
+        // Let's randomly rearrange the array so every entity starts in a
+        // different position.
+        var rand = Math.floor(Math.random()*walking.length);
+        var walking_spliced = walking.splice(rand);
+        var walking_action = walking_spliced.concat(walking);
+        
         var dying = [];
         for (var i=30;i<38;i++){
             dying.push(i);
         }
-        this.addAnim( 'walking', 0.08, walking );
+        this.addAnim( 'walking', 0.08, walking_action );
         this.addAnim( 'dying', 0.05, dying, true );
 //         this.addAnim( 'dead', 0.1, [37] );
 
