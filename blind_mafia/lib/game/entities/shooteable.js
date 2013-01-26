@@ -22,6 +22,10 @@ EntityShooteable = ig.Entity.extend({
 
     update: function() {
         this.parent();
+        // XXX: Something happens with the onMouseOut event...
+        if (!this.mouseover){
+            this.heart.stop();
+        }
     },
     
     init: function( x, y, settings ) {
@@ -55,6 +59,8 @@ EntityShooteable = ig.Entity.extend({
     onMouseOut: function($this){
 //         $this.currentAnim = $this.anims[$this.png];
         $this.heart.stop();
+        // XXX: Be *REALLY* sure that we are stopping the sound
+        $this.mouseover = false;
     },
     onMouseOver: function($this){
 
