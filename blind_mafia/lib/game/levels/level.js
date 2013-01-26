@@ -77,6 +77,8 @@ ig.BaseLevel = ig.Class.extend({
             added += 1;
         }
 
+        ig.game.sortEntitiesDeferred();
+
     },
 
     update: function() {
