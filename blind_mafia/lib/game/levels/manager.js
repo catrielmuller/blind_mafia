@@ -19,16 +19,16 @@ ig.LevelsManager = ig.Class.extend({
     
     load: function( name ){
         // Clean the Scene and start over
-        this.screen = {x: 0, y: 0};
+        ig.game.screen = {x: 0, y: 0};
 
         // Clean entities
-        this.entities = [];
-        this.namedEntities = {};
+        ig.game.entities = [];
+        ig.game.namedEntities = {};
         
         // Map Layer
-        this.collisionMap = ig.CollisionMap.staticNoCollision;
-        this.backgroundMaps = [];
-        
+        ig.game.collisionMap = ig.CollisionMap.staticNoCollision;
+        ig.game.backgroundMaps = [];
+
         this.current = this.levels[name];
         this.current.ready();
     },
