@@ -9,10 +9,8 @@ ig.module(
 
 ig.Level1 = ig.BaseLevel.extend({
 
-    difficulty: 5,
-    
     background_img: 'media/level1bg.png',
-    
+   
     img_on_top: 'media/level1over.png',
     
     zones_coord: {       
@@ -27,17 +25,17 @@ ig.Level1 = ig.BaseLevel.extend({
     },
     
     zone_size: {
-        x: 143, 
-        y: 78
+        x: 144, 
+        y: 96
     },
     
     zone_margin: {       
         // Margen izquierdo
-        left: 1,
+        left: 0,
         // Margen superior
-        top: 9,
+        top: 0,
         // Margen inferior
-        bottom: 9,
+        bottom: 0,
         // Margen derecho
         right: 0
     },

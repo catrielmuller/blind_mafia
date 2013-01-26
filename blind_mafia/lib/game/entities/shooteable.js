@@ -10,13 +10,12 @@ ig.module(
 .defines(function(){
 
 EntityShooteable = ig.Entity.extend({
-    animSheet: new ig.AnimationSheet( 'media/shooteable.png', 143, 78 ),
+    animSheet: new ig.AnimationSheet( 'media/guy_01.png', 144, 96 ),
     isMouseSensitive: true,
-    size: {x:143, y: 78},
+    size: {x:144, y: 96},
     zIndex: 50,
-    png: '',
-    png_alt: '',
     correct: false,
+    sound: '',
     
     /* isMouseSensitive: true, */
 
@@ -27,39 +26,44 @@ EntityShooteable = ig.Entity.extend({
     init: function( x, y, settings ) {
         this.parent( x, y, settings );
 
-        if (settings.png == 0){
-            this.png = 'red';
-            this.png_alt = 'blue';
+        var walking = [];
+        for (var i=0;i<30;i++){
+            walking.push(i);
         }
-        else{
-            this.png_alt = 'red';
-            this.png = 'blue';
+        var dying = [];
+        for (var i=30;i<38;i++){
+            dying.push(i);
         }
-        
-        this.addAnim( 'red', 1, [0] );
-        this.addAnim( 'blue', 1, [1] );
+        this.addAnim( 'walking', 0.08, walking );
+        this.addAnim( 'dying', 0.05, dying, true );
+//         this.addAnim( 'dead', 0.1, [37] );
 
         this.correct = settings.correct;
+        this.sound = settings.audio;
 
-        this.currentAnim = this.anims[this.png];
+        this.currentAnim = this.anims['walking'];
 
-        this.addListener("onMouseOver", this.altImg, this);
-        this.addListener("onMouseOut", this.orgImg, this);
-        this.addListener("onClick", this.shoot, this);
+        
+        this.addListener( "onMouseOver", this.onMouseOver, this );
+        this.addListener( "onMouseOut", this.onMouseOut, this );
+        this.addListener( "onClick", this.onClick, this );
         
         this.heart = new ig.Sound( 'media/sounds/latido_'+settings.audio+'.ogg', true );
     },
 
-    orgImg: function($this){
-        $this.currentAnim = $this.anims[$this.png];
+    onMouseOut: function($this){
+//         $this.currentAnim = $this.anims[$this.png];
         $this.heart.stop();
     },
-    altImg: function($this){
-        $this.currentAnim = $this.anims[$this.png_alt];
+    onMouseOver: function($this){
+
+        //console.log('Estas escuchando el sonido: ' + $this.sound);
+        
+//         $this.currentAnim = $this.anims[$this.png_alt];
         $this.heart.play();
     },
-    shoot: function($this){
-
+    onClick: function($this){
+        $this.currentAnim = $this.anims.dying.rewind();
         if($this.correct){
             console.log('BOOM!');
         }
