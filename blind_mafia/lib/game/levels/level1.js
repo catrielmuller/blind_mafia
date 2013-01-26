@@ -44,6 +44,7 @@ ig.Level1 = ig.BaseLevel.extend({
 	ready: function(){
         this.parent();
         ig.game.spawnEntity( EntityCrosshair, 0, 0, {});
+        ig.$("#canvas").style.cursor = "none";
 	},
 
     update: function() {

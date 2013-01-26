@@ -28,6 +28,7 @@ ig.LevelsManager = ig.Class.extend({
         // Map Layer
         ig.game.collisionMap = ig.CollisionMap.staticNoCollision;
         ig.game.backgroundMaps = [];    
+        ig.$("#canvas").style.cursor = "auto";
     },
     
     load: function( name ){
