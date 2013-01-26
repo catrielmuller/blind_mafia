@@ -5,7 +5,7 @@ ig.module(
 	'impact.game',
 	'impact.font',
     
-    //'impact.debug.debug',
+    'impact.debug.debug',
     
     'game.levels.manager',
     
@@ -59,6 +59,6 @@ MyGame = ig.Game.extend({
 
 // Start the Game with 60fps, a resolution of 853x480, scaled
 // up by a factor of 1
-ig.main( '#canvas', MyGame, 60, 1706, 960, 0.5);
+ig.main( '#canvas', MyGame, 60, 853, 480, 1);
 
 });

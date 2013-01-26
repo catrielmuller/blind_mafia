@@ -2,17 +2,17 @@ ig.module(
     'game.entities.shooteable'
 )
 .requires(
-    'impact.entity'
-    /*'plugins.entityMouseSensitive',
-    'plugins.events'*/
+    'impact.entity',
+    'plugins.entityMouseSensitive',
+    'plugins.events'
 )
 .defines(function(){
 
 EntityShooteable = ig.Entity.extend({
-    
-    animSheet: new ig.AnimationSheet( 'media/tiles.png', 32, 32 ),
-    size: {x:32, y:32},
-    collides: ig.Entity.COLLIDES.FIXED,
+    animSheet: new ig.AnimationSheet( 'media/shooteable.png', 143, 78 ),
+    isMouseSensitive: true,
+    size: {x:143, y: 78},
+    zIndex: 50,
     png: '',
     png_alt: '',
     correct: false,
@@ -42,10 +42,9 @@ EntityShooteable = ig.Entity.extend({
 
         this.currentAnim = this.anims[this.png];
 
-        /* 
         this.addListener("onMouseOver", this.altImg, this);
         this.addListener("onMouseOut", this.orgImg, this);
-        this.addListener("onClick", this.shoot, this); */
+        this.addListener("onClick", this.shoot, this);
     },
 
     orgImg: function($this){
