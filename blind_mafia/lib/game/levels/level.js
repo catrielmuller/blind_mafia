@@ -35,23 +35,31 @@ ig.BaseLevel = ig.Class.extend({
 			img: this.img_on_top
 		});
 
+
+        //Difficulty
+        this.difficulty = ig.game.player.level + 1;
+
+
 		var zones = this.loadzones();
         var zones_amount = zones.length;
         
         // Mezclamos la lista de zonas
         shuffle(zones);
+        shuffle(ig.game.player.sounds_avaible);
         
         // nos quedamos con el ultimo para la zona objetivo
         var zone = zones.pop();
+        zone.sound = ig.game.player.sounds_selected;
 
-//         console.log("Correct: " + zone);
+        console.log("DEBUG: Correct: " + zone.left + " " + zone.top);
             
         // Y creamos la entidad con esa data
         ig.game.spawnEntity( EntityShooteable, zone.left, zone.top, { 
                 png: 0,
                 correct: true,
-                audio: 1
-            });
+                audio:  zone.sound,
+        });
+
         
         var added = 1;
         
@@ -59,14 +67,14 @@ ig.BaseLevel = ig.Class.extend({
         
         while (added < this.difficulty && added < zones_amount){
             zone = zones.pop();
+            zone.sound = ig.game.player.sounds_avaible.pop();
             ig.game.spawnEntity( EntityShooteable, zone.left, zone.top, { 
                 png: 0,
                 correct: false,
-                audio: added+1
+                audio: zone.sound,
             });
-//             console.log("Rand: " + zone);
+            //console.log("Rand: " + zone);
             added += 1;
-            
         }
 
     },

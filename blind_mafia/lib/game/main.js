@@ -10,6 +10,7 @@ ig.module(
     'game.levels.manager',
     
     'game.levels.menu',
+    'game.levels.briefing',
     'game.levels.level1'
     //'game.levels.level2'
     //'game.levels.gameover'
@@ -22,17 +23,22 @@ MyGame = ig.Game.extend({
 	font: new ig.Font( 'media/04b03.font.png' ),
 
     levels_manager: new ig.LevelsManager(),
+
+    player: {
+    	level: 4,
+    	sounds_avaible: '',
+    	sounds_selected: 0
+    },
 	
 	init: function() {
 		// Initialize your game here; bind keys etc.
 
 		this.levels_manager.append('menu', ig.LevelMenu);
-        this.levels_manager.append('level1', ig.Level1);
-//         this.levels_manager.append('level2', Level2);
-//         this.levels_manager.append('gameover', GameOver);
+		this.levels_manager.append('briefing', ig.LevelBriefing);
+        this.levels_manager.append('level1', ig.Level1);        
+//      this.levels_manager.append('gameover', GameOver);
         
-	    this.levels_manager.load('menu');
-
+	    this.levels_manager.load('briefing');
 	},
 	
 	update: function() {

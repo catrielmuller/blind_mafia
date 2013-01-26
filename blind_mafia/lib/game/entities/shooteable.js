@@ -17,6 +17,7 @@ EntityShooteable = ig.Entity.extend({
     png: '',
     png_alt: '',
     correct: false,
+    sound: '',
     
     /* isMouseSensitive: true, */
 
@@ -40,6 +41,7 @@ EntityShooteable = ig.Entity.extend({
         this.addAnim( 'blue', 1, [1] );
 
         this.correct = settings.correct;
+        this.sound = settings.audio;
 
         this.currentAnim = this.anims[this.png];
 
@@ -55,6 +57,9 @@ EntityShooteable = ig.Entity.extend({
         $this.heart.stop();
     },
     altImg: function($this){
+
+        //console.log('Estas escuchando el sonido: ' + $this.sound);
+        
         $this.currentAnim = $this.anims[$this.png_alt];
         $this.heart.play();
     },
