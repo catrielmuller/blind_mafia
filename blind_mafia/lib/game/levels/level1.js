@@ -3,7 +3,8 @@ ig.module(
 )
 .requires(
     'game.levels.level',
-    'game.entities.shooteable'
+    'game.entities.shooteable',
+    'game.entities.crosshair'
 )
 .defines(function(){ "use strict";
 
@@ -42,6 +43,7 @@ ig.Level1 = ig.BaseLevel.extend({
 
 	ready: function(){
         this.parent();
+        ig.game.spawnEntity( EntityCrosshair, 0, 0, {});
 	},
 
     update: function() {
