@@ -14,7 +14,7 @@ ig.LevelsManager = ig.Class.extend({
     
     append: function( name, level ) {
         // Add level to the level list
-        levels.name = level;
+        this.levels[name] = new level;
     },
     
     load: function( name ){
@@ -29,8 +29,8 @@ ig.LevelsManager = ig.Class.extend({
         this.collisionMap = ig.CollisionMap.staticNoCollision;
         this.backgroundMaps = [];
         
-        this.current = levels[name];
-        this.current.init();
+        this.current = this.levels[name];
+        this.current.ready();
     },
     
     

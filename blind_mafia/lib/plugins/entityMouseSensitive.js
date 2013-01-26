@@ -96,7 +96,6 @@ ig.module(
 		isDragged: false,			// indicates if the entity is dragged
 		
 		// plugin saves
-		_pixelOrgin: null,			// array of all pixels in the orginal animation image
 		_oldMousePos: { x:0, y:0 },	// mouse position from previous frame to indicate dragging
 		_lastClick: 0,				// date time in milliseconds of a click to indicate doubleclicks
 		
@@ -106,10 +105,6 @@ ig.module(
 		init: function( x, y, settings ) {
 			this.parent( x, y, settings );
 			
-			// not in weltmeister and animation sheet extisting
-			if( (typeof wm == "undefined" || ig.Game.pluginMouseSensitive.enabledInWeltmeister) && this.animSheet instanceof ig.AnimationSheet )
-				this._pixelOrgin = this.animSheet.image.data.getContext( "2d" ).getImageData( 0, 0, this.animSheet.image.data.width, this.animSheet.image.data.height );
-				//console.log(this._pixelOrgin);
 		},
 		
 		// #########################################################################################
@@ -141,25 +136,18 @@ ig.module(
 		// isTouched()
 		// checks if the mouse is over the visible or transparent part of the entity 
 		isTouched: function() {
-			
+
 			// mouse over the entity sprite
 			var mouseX = ig.input.mouse.x + ig.game.screen.x;
 			var mouseY = ig.input.mouse.y + ig.game.screen.y;
+
 			if ( 	mouseX > (this.pos.x)
 			&&		mouseY > (this.pos.y)
 			&&		mouseX < (this.pos.x + this.size.x)
 			&&		mouseY < (this.pos.y + this.size.y) ) {
-				
-				// redirect the relative mouse position on the entity sprite to the current animation frame of the tilesheet
-				var tilesPerRow = this._pixelOrgin.width / (this.animSheet.width * ig.system.scale);
-				var currentTile = this.currentAnim.tile;
-				var tileRows = (currentTile / tilesPerRow).floor();
-				relX = (mouseX - this.pos.x + this.offset.x - 1).round() * ig.system.scale + ((currentTile - tileRows*tilesPerRow) * this.animSheet.width * ig.system.scale);
-				relY = (mouseY - this.pos.y + this.offset.y - 1).round() * ig.system.scale + (tileRows * this.animSheet.height * ig.system.scale);
-				
-				// check the mouse position against the transparency of the entity sprited
-				var pixelAlpha = ((relY * this._pixelOrgin.width + relX) * 4) + 3;
-				if( this._pixelOrgin.data[pixelAlpha] > 0 ) return true;
+		
+				return true;
+
 			}
 			return false;
 		},
@@ -169,6 +157,9 @@ ig.module(
 		// analyse the alpha of the pixels in the animation image, trigger if the mouse
 		// is over the visible part of the entity and fire the events
 		fireMouseEvents: function() {
+			var mouseX = ig.input.mouse.x + ig.game.screen.x;
+			var mouseY = ig.input.mouse.y + ig.game.screen.y;
+
 			var entityIsTouched = false;
 			var timeNow = new Date().getTime();
 			
