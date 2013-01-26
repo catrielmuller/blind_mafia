@@ -4,7 +4,7 @@ ig.module(
 .requires(
 	'impact.game',
 	'impact.font',
-    
+    'impact.debug.debug',
     'game.entities.shooteable'
 )
 .defines(function(){
@@ -17,15 +17,14 @@ MyGame = ig.Game.extend({
 	
 	init: function() {
 		// Initialize your game here; bind keys etc.
+
+
+
+
         var png = "";
-        for( var y = 0; y < 4; y++ ) { 
-            if (y%2 == 0){
-                png = "red_square.png";
-            }
-            else{
-                png = "blue_square.png";
-            }
-            ig.game.spawnEntity( EntityShooteable, 100*y, 100*y, {png:png} );
+        for( var y = 0; y < 15; y++ ) {
+        	png = y%2;
+            ig.game.spawnEntity( EntityShooteable, 8*y, 8*y, {png:png} );
         }
 	},
 	
@@ -51,6 +50,6 @@ MyGame = ig.Game.extend({
 
 // Start the Game with 60fps, a resolution of 853x480, scaled
 // up by a factor of 1
-ig.main( '#canvas', MyGame, 60, 853, 480, 1 );
+ig.main( '#canvas', MyGame, 60, 1706, 960, 0.5);
 
 });
