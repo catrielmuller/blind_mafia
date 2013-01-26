@@ -8,6 +8,19 @@ ig.module(
 )
 .defines(function(){ "use strict";
 
+//shuffles list in-place
+function shuffle(list) {
+  var i, j, t;
+  for (i = 1; i < list.length; i++) {
+    j = Math.floor(Math.random()*(1+i));  // choose j in [0..i]
+    if (j != i) {
+      t = list[i];                        // swap list[i] and list[j]
+      list[i] = list[j];
+      list[j] = t;
+    }
+  }
+}
+
 ig.BaseLevel = ig.Class.extend({
 
 	ready: function(){
@@ -23,27 +36,35 @@ ig.BaseLevel = ig.Class.extend({
 		});
 
 		var zones = this.loadzones();
-
-		var correct = Math.floor(Math.random() * zones.length);
-        console.log("Correct: " + correct);
+        var zones_amount = zones.length;
         
-        ig.game.spawnEntity( EntityShooteable, zones[correct].left, zones[correct].top, { 
+        // Mezclamos la lista de zonas
+        shuffle(zones);
+        
+        // nos quedamos con el ultimo para la zona objetivo
+        var zone = zones.pop();
+
+        console.log("Correct: " + zone);
+            
+        // Y creamos la entidad con esa data
+        ig.game.spawnEntity( EntityShooteable, zone.left, zone.top, { 
                 png: 0,
                 correct: true
             });
-        var added = [correct];
         
-        while (added.length < this.difficulty && added.length < zones.length){
-            var rand = Math.floor((Math.random()*zones.length));
+        var added = 1;
+        
+        // Ahora vamos a agregar las restantes
+        
+        while (added < this.difficulty && added < zones_amount){
+            zone = zones.pop();
+            ig.game.spawnEntity( EntityShooteable, zone.left, zone.top, { 
+                png: 0,
+                correct: false
+            });
+            console.log("Rand: " + zone);
+            added += 1;
             
-            if(added.indexOf(rand) == -1){
-                ig.game.spawnEntity( EntityShooteable, zones[rand].left, zones[rand].top, { 
-                        png: 0,
-                        correct: false
-                    });
-                console.log("Rand: " + rand);
-                added.push(rand);
-            }
         }
 
     },
