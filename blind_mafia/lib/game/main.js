@@ -9,6 +9,9 @@ ig.module(
     
     'game.levels.manager',
     
+    'game.items.countdown',
+    'game.items.heartsensor',
+    
     'game.levels.menu',
     'game.levels.briefing',
     'game.levels.level1'
@@ -31,7 +34,7 @@ MyGame = ig.Game.extend({
     	sounds_selected: [],
     	money: 2000,
     	bullets: 5,
-    	items: []
+    	items: [EntityHeartsensorItem, EntityCountdownItem]
     },
 	
 	init: function() {

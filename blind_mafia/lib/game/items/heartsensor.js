@@ -1,5 +1,5 @@
 ig.module(
-    'game.items.countdown'
+    'game.items.heartsensor'
 )
 .requires(
     'impact.entity',
@@ -8,10 +8,10 @@ ig.module(
 )
 .defines(function(){
 
-EntityCountdownItem = ig.Entity.extend({
+EntityHeartsensorItem = ig.Entity.extend({
     size: {x: 64, y: 64},
     
-    animSheet: new ig.AnimationSheet( 'media/items/countdown.png', 64, 64),
+    animSheet: new ig.AnimationSheet( 'media/items/heartsensor.png', 64, 64),
     
     zIndex: 140,
     isMouseSensitive: true,
