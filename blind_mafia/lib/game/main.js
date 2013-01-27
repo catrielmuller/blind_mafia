@@ -83,7 +83,7 @@ MyGame = ig.Game.extend({
         this.levels_manager.append('endlevel', ig.LevelEnding);       
         this.levels_manager.append('gameover', ig.LevelGameOver);
         
-        this.levels_manager.load('briefing');
+        this.levels_manager.load('menu');
 	},
 	
 	update: function() {
