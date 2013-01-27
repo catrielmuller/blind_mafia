@@ -13,6 +13,7 @@ ig.module(
     'game.items.heartsensor',
     
     'game.levels.menu',
+    'game.levels.story',
     'game.levels.briefing',
     'game.levels.level1',
     'game.levels.endlevel',
@@ -79,6 +80,7 @@ MyGame = ig.Game.extend({
 
 
 		this.levels_manager.append('menu', ig.LevelMenu);
+		this.levels_manager.append('story', ig.LevelStory);
 		this.levels_manager.append('briefing', ig.LevelBriefing);
         this.levels_manager.append('level1', ig.Level1); 
         this.levels_manager.append('endlevel', ig.LevelEnding);       

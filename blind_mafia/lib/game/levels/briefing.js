@@ -24,9 +24,10 @@ ig.LevelBriefing = ig.Class.extend({
         this.newlevel();
 
         var start = {
-            img: 'media/button.png',
-            width: 64,
-            height: 64,
+            img: 'media/buttonletsgo.png',
+            width: 207,
+            height: 47,
+            over: false,
             click: function(){
 //                 ig.game.player.heart.stop();
                 ig.music.stop();
@@ -73,7 +74,9 @@ ig.LevelBriefing = ig.Class.extend({
         ig.game.player.level_fails = 0;
         ig.game.player.level_win = 0;
 
-        ig.music.play("briefing");
+        if(ig.game.player.level > 1){
+            ig.music.play("briefing");
+        }
     }
     
 });

@@ -13,13 +13,12 @@ EntityButton = ig.Entity.extend({
         isMouseSensitive: true,
         size: {x:64, y:64},
         zIndex: 200,
-        collides: ig.Entity.COLLIDES.FIXED,
         click_event: function(){},
 
         update: function() {
             this.parent();
         },
-        
+
         init: function( x, y, settings ) {
 
             //this.animSheet = new ig.AnimationSheet( img, width, height );
@@ -27,6 +26,7 @@ EntityButton = ig.Entity.extend({
             var img = settings.img;
             var width = settings.width;
             var height = settings.height;
+            this.size = {x:width, y:height};
             this.animSheet = new ig.AnimationSheet( img, width, height );
 
             this.parent( x, y, settings );
@@ -37,7 +37,9 @@ EntityButton = ig.Entity.extend({
             this.addAnim( 'disable', 1, [2] );
             this.currentAnim = this.anims.idle;
 
-            this.addListener("onMouseOver", this.over, this);
+            if(settings.over != false){
+                this.addListener("onMouseOver", this.over, this);
+            }                
             this.addListener("onMouseOut", this.idle, this);
             this.addListener("onClick", this.click, this);
         },
@@ -49,6 +51,7 @@ EntityButton = ig.Entity.extend({
             $this.currentAnim = $this.anims.idle;
         },
         click: function($this){
+            console.log('CLICK!');
             $this.click_event;
         },
         
