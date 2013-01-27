@@ -22,6 +22,14 @@ ig.LevelsManager = ig.Class.extend({
         ig.game.screen = {x: 0, y: 0};
 
         // Clean entities
+        for (var i=0; i<ig.game.entities.length; i++){
+            // If at the moment we start cleaning up, we were
+            // hovering over an entity (heart beating), then
+            // make it stop
+            if (ig.game.entities[i].heart !== undefined){
+                ig.game.entities[i].heart.stop();
+            }
+        }
         ig.game.entities = [];
         ig.game.namedEntities = {};
         
