@@ -40,7 +40,7 @@ MyGame = ig.Game.extend({
 	init: function() {
 		// Initialize your game here; bind keys etc.
         ig.music.loop = true;
-        ig.music.add( 'media/music/Main Titles.ogg', "main_menu" );
+        ig.music.add( 'media/music/Main Titles (Fade).ogg', "main_menu" );
         ig.music.add( 'media/music/Briefing.ogg', "briefing" );
 
 
