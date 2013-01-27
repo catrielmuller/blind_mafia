@@ -76,6 +76,7 @@ EntityShooteable = ig.Entity.extend({
         
         this.heart = new ig.Sound( 'media/sounds/latido_'+settings.audio+'.ogg', true );
         this.shoot = new ig.Sound( 'media/sounds/shoot.ogg', false );
+        this.shoot_empty = new ig.Sound( 'media/sounds/shoot_empty.ogg', false );
     },
 
     onMouseOut: function($this){
@@ -102,7 +103,7 @@ EntityShooteable = ig.Entity.extend({
             $this.shoot.play();
         }
         else {
-            //SOund CLIPPPPP            
+            $this.shoot_empty.play();         
         }
 
         //console.log(ig.game.player.bullets);
