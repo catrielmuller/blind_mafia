@@ -23,7 +23,6 @@ ig.LevelStory = ig.Class.extend({
             width: 475,
             height: 211,
             set: false,
-	    over: false,
             click: function(){
             }            
         }
@@ -32,7 +31,6 @@ ig.LevelStory = ig.Class.extend({
             width: 288,
             height: 211,
             set: false,
-	    over: false,
             click: function(){
             }            
         } 
@@ -41,7 +39,6 @@ ig.LevelStory = ig.Class.extend({
             width: 288,
             height: 211,
             set: false,
-	    over: false,
             click: function(){
             }            
         } 
@@ -50,7 +47,6 @@ ig.LevelStory = ig.Class.extend({
             width: 475,
             height: 211,
             set: false,
-	    over: false,
             click: function(){
             }            
         } 
