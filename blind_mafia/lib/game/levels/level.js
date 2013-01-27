@@ -38,7 +38,16 @@ ig.BaseLevel = ig.Class.extend({
 			zindex: 99,
 			img: this.img_on_top
 		});
+        
+        var sniper_sprite = {
+            img: 'media/rifle.png',
+            width: 288,
+            height: 96,
+            over: false, 
+        }
 
+        ig.game.spawnEntity( EntityButton, 0, 384, sniper_sprite);
+        
         ig.game.itemviewer = ig.game.spawnEntity( EntityItemViewer, ig.system.width/2, ig.system.height-97, {});
 
         //Difficulty
