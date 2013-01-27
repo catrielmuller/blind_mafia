@@ -39,13 +39,17 @@ MyGame = ig.Game.extend({
 	
 	init: function() {
 		// Initialize your game here; bind keys etc.
+        ig.music.loop = true;
+        ig.music.add( 'media/music/Main Titles.ogg', "main_menu" );
+        ig.music.add( 'media/music/Briefing.ogg', "briefing" );
+
 
 		this.levels_manager.append('menu', ig.LevelMenu);
 		this.levels_manager.append('briefing', ig.LevelBriefing);
         this.levels_manager.append('level1', ig.Level1);        
 //      this.levels_manager.append('gameover', GameOver);
         
-	    this.levels_manager.load('briefing');
+	    this.levels_manager.load('menu');
 	},
 	
 	update: function() {

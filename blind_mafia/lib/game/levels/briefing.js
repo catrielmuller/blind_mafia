@@ -30,7 +30,8 @@ ig.LevelBriefing = ig.Class.extend({
             width: 64,
             height: 64,
             click: function(){
-                ig.game.player.heart.stop();
+//                 ig.game.player.heart.stop();
+                ig.music.stop();
                 ig.game.levels_manager.load('level1');                
 
             }            
@@ -66,11 +67,12 @@ ig.LevelBriefing = ig.Class.extend({
         };
 
         ig.game.player.heart = new ig.Sound( 'media/sounds/latido_'+selected+'.ogg', true );
-        ig.game.player.heart.play();
+//         ig.game.player.heart.play();
 
         ig.game.player.sounds_avaible = sounds;
         ig.game.player.sounds_selected = sounds_selected;
 
+        ig.music.play("briefing");
     }
     
 });
