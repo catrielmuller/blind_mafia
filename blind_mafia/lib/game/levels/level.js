@@ -3,6 +3,7 @@ ig.module(
 )
 .requires(
     'impact.impact',
+    'impact.font',
     'game.items.itemviewer',
     'game.entities.fullimg',
     'game.entities.shooteable'
@@ -23,7 +24,9 @@ function shuffle(list) {
 }
 
 ig.BaseLevel = ig.Class.extend({
-
+    
+    font: new ig.Font( 'media/comic_sans_30_red.png' ),
+                               
 	ready: function(){
 
 		ig.game.spawnEntity( EntityFullImg, 0, 0, { 
@@ -93,9 +96,7 @@ ig.BaseLevel = ig.Class.extend({
         }
 
         ig.game.spawnEntity( EntityButton, 750, 400, end_buttom);
-
-
-
+        
         ig.game.sortEntitiesDeferred();
     },
 
@@ -105,6 +106,7 @@ ig.BaseLevel = ig.Class.extend({
 
     draw: function() {
     	//console.log('draw');
+        this.font.draw( '40', 30, 0, ig.Font.ALIGN.CENTER );
     },
 
     loadzones: function(){

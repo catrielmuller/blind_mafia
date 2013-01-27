@@ -41,6 +41,8 @@ ig.Level1 = ig.BaseLevel.extend({
         right: 0
     },
 
+    timeout: 30,
+    
 	ready: function(){
         this.parent();
         ig.game.spawnEntity( EntityCrosshair, 0, 0, {});
@@ -49,10 +51,12 @@ ig.Level1 = ig.BaseLevel.extend({
 
     update: function() {
     	//console.log('update');
+        this.parent();
     },
 
     draw: function() {
     	//console.log('draw');
+        this.parent();
     },
 
 });
