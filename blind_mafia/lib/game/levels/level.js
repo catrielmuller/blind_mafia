@@ -97,6 +97,9 @@ ig.BaseLevel = ig.Class.extend({
 
         ig.game.spawnEntity( EntityButton, 750, 400, end_buttom);
         
+        ig.game.timer = new ig.Timer();
+        ig.game.timer.set( this.timeout );
+        
         ig.game.sortEntitiesDeferred();
     },
 
@@ -106,7 +109,12 @@ ig.BaseLevel = ig.Class.extend({
 
     draw: function() {
     	//console.log('draw');
-        this.font.draw( '40', 30, 0, ig.Font.ALIGN.CENTER );
+        var remaining = Math.floor(ig.game.timer.delta())*(-1);
+        if (remaining <= 0){
+            // La pantalla deberia terminar, por ahora recargamos el nivel;
+            ig.game.levels_manager.load('level1');
+        }
+        this.font.draw(remaining, 30, 0, ig.Font.ALIGN.CENTER );
     },
 
     loadzones: function(){

@@ -41,7 +41,7 @@ ig.Level1 = ig.BaseLevel.extend({
         right: 0
     },
 
-    timeout: 30,
+    timeout: 15,
     
 	ready: function(){
         this.parent();
