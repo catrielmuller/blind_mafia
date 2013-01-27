@@ -20,7 +20,10 @@ ig.LevelBriefing = ig.Class.extend({
 
     ready: function(){
 
-        console.log("You're on Level " + ig.game.player.level);
+        ig.game.spawnEntity( EntityFullImg, 0, 0, { 
+            zindex: 0,
+            img: 'media/brief.png'
+        });
 
         this.newlevel();
 
@@ -89,6 +92,9 @@ ig.LevelBriefing = ig.Class.extend({
         var sounds = [1,2,3,4,5,6,7,8,9,10];
 
         var selects = ig.game.player.level;
+        if(selects > 5){
+            selects = 5;
+        }
         var sounds_selected = [];
 
         for (var i = selects - 1; i >= 0; i--) {

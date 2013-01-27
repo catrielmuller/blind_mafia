@@ -86,9 +86,10 @@ ig.BaseLevel = ig.Class.extend({
         }
 
         var end_buttom = {
-            img: 'media/button.png',
-            width: 64,
-            height: 64,
+            img: 'media/buttonbacktohq.png',
+            width: 100,
+            height: 50,
+            over: false,
             custom_click: function(){
                 ig.game.levels_manager.load('endlevel');
 

@@ -19,12 +19,11 @@ ig.LevelEnding = ig.Class.extend({
 
     ready: function(){
 
-        console.log('Finalizaste el Level ' + ig.game.player.level);
-
         var start = {
-            img: 'media/button.png',
-            width: 64,
-            height: 64,
+            img: 'media/buttonletsgo.png',
+            width: 207,
+            height: 47,
+            over: false,
             custom_click: function(){
 //              ig.game.player.heart.stop();
                 ig.music.stop();
@@ -32,12 +31,13 @@ ig.LevelEnding = ig.Class.extend({
             }            
         }
 
-        ig.game.spawnEntity( EntityButton, 100, 100, start);
+        ig.game.spawnEntity( EntityButton, 646, 403, start);
 
         var buy_bullets = {
-            img: 'media/button.png',
-            width: 64,
-            height: 64,
+            img: 'media/buttonbuybullets.png',
+            width: 100,
+            height: 50,
+            over: false,
             custom_click: function(){
                 ig.game.player.buy('bullets');
             }            
@@ -45,24 +45,26 @@ ig.LevelEnding = ig.Class.extend({
         ig.game.spawnEntity( EntityButton, 100, 400, buy_bullets);
 
         var buy_extra_time = {
-            img: 'media/button.png',
-            width: 64,
-            height: 64,
+            img: 'media/buttonbuytime.png',
+            width: 100,
+            height: 50,
+            over: false,
             custom_click: function(){
                 ig.game.player.buy('extra_time');
             }            
         }        
-        ig.game.spawnEntity( EntityButton, 150, 400, buy_extra_time);
+        ig.game.spawnEntity( EntityButton, 210, 400, buy_extra_time);
 
         var buy_heartsensor = {
-            img: 'media/button.png',
-            width: 64,
-            height: 64,
+            img: 'media/buttonbuysensor.png',
+            width: 100,
+            height: 50,
+            over: false,
             custom_click: function(){
                 ig.game.player.buy('heartsensor');
             }            
         }        
-        ig.game.spawnEntity( EntityButton, 200, 400, buy_heartsensor);
+        ig.game.spawnEntity( EntityButton, 320, 400, buy_heartsensor);
 
         this.endlevel();
     },
@@ -73,19 +75,19 @@ ig.LevelEnding = ig.Class.extend({
 
     draw: function() {
         //console.log('draw');
-        this.font.draw("Market", 200, 10, ig.Font.ALIGN.CENTER );
+        this.font.draw("Market", 50, 10, ig.Font.ALIGN.LEFT );
         if(this.without_kill > 0){
-            this.font.draw("Te falto matar a " + this.without_kill, 200, 50, ig.Font.ALIGN.LEFT );
+            this.font.draw("You had " + this.without_kill + " victim left.", 50, 50, ig.Font.ALIGN.LEFT );
         }
         if(this.pay > 0){
-            this.font.draw("Cumpliste los Objetivos, Ganaste $" + this.pay , 200, 50, ig.Font.ALIGN.LEFT );
-            this.font.draw('Ahora Tienes $' + ig.game.player.money, 200, 100, ig.Font.ALIGN.LEFT );
+            this.font.draw("Objectives Accomplished. You won $" + this.pay , 50, 100, ig.Font.ALIGN.LEFT );
+            this.font.draw('Now you have $' + ig.game.player.money, 50, 150, ig.Font.ALIGN.LEFT );
         } else if (this.pay < 0){
             var pay = this.pay * -1;
-            this.font.draw("FAIL!. Debes pagarle al jefe $" + pay, 300, 50, ig.Font.ALIGN.LEFT );
-            this.font.draw('Ahora Tienes $' + ig.game.player.money, 200, 100, ig.Font.ALIGN.LEFT );
+            this.font.draw("You owe the BOSS $" + pay, 50, 100, ig.Font.ALIGN.LEFT );
+            this.font.draw('Now you have $' + ig.game.player.money, 50, 150, ig.Font.ALIGN.LEFT );
         } else {
-            this.font.draw('Tienes $' + ig.game.player.money, 200, 50, ig.Font.ALIGN.LEFT );
+            this.font.draw('Now you have $' + ig.game.player.money, 50, 50, ig.Font.ALIGN.LEFT );
         }
         
     },

@@ -4,9 +4,6 @@ ig.module(
 .requires(
 	'impact.game',
 	'impact.font',
-    
-    'impact.debug.debug',
-    
     'game.levels.manager',
     
     'game.items.countdown',
@@ -42,7 +39,7 @@ MyGame = ig.Game.extend({
     	buy: function(item){
 
     		if(item == 'bullets'){
-	            var price = 500;
+	            var price = 100;
 	            var cant = 10;
 
 	            if(ig.game.player.money >= price){
@@ -61,7 +58,7 @@ MyGame = ig.Game.extend({
 	        }
 
 	        if(item == 'heartsensor'){
-	            var price = 500;
+	            var price = 300;
 
 	            if(ig.game.player.money >= price){
 	            	ig.game.player.items.push(EntityHeartsensorItem);
@@ -86,7 +83,7 @@ MyGame = ig.Game.extend({
         this.levels_manager.append('endlevel', ig.LevelEnding);       
         this.levels_manager.append('gameover', ig.LevelGameOver);
         
-        this.levels_manager.load('menu');
+        this.levels_manager.load('briefing');
 	},
 	
 	update: function() {
