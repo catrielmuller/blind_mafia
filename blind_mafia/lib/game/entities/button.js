@@ -37,6 +37,8 @@ EntityButton = ig.Entity.extend({
             this.addAnim( 'disable', 1, [2] );
             this.currentAnim = this.anims.idle;
 
+            this.sound = settings.sound;
+            
             if(settings.over != false){
                 this.addListener("onMouseOver", this.over, this);
             }                
@@ -51,6 +53,9 @@ EntityButton = ig.Entity.extend({
             $this.currentAnim = $this.anims.idle;
         },
         click: function($this){
+            if ($this.sound !== undefined){
+                $this.sound.play();
+            }
             $this.click_event();
         },
         

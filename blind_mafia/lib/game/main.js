@@ -29,7 +29,7 @@ MyGame = ig.Game.extend({
     levels_manager: new ig.LevelsManager(),
 
     player: {
-    	level: 1,
+    	level: 2,
     	difficult: 3,
     	sounds_avaible: '',
     	sounds_selected: [],
@@ -86,7 +86,7 @@ MyGame = ig.Game.extend({
         this.levels_manager.append('endlevel', ig.LevelEnding);       
         this.levels_manager.append('gameover', ig.LevelGameOver);
         
-	    this.levels_manager.load('menu');
+        this.levels_manager.load('menu');
 	},
 	
 	update: function() {

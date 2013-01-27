@@ -80,7 +80,7 @@ ig.LevelStory = ig.Class.extend({
         }
 
         if(this.hist.delta() >= 12 && this.start == false){
-            ig.music.stop();
+//             ig.music.stop();
             ig.game.levels_manager.load('briefing');
             this.start == true;
         }
