@@ -128,6 +128,11 @@ EntityShooteable = ig.Entity.extend({
         }
     },
     
+    kill: function(){
+        $this.heart.stop();
+        this.parent();
+    }
+    
 });
 
 });
