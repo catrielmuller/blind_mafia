@@ -14,9 +14,9 @@ ig.module(
     
     'game.levels.menu',
     'game.levels.briefing',
-    'game.levels.level1'
-    //'game.levels.level2'
-    //'game.levels.gameover'
+    'game.levels.level1',
+    'game.levels.endlevel',
+    'game.levels.gameover'
 )
 .defines(function(){
 
@@ -33,8 +33,42 @@ MyGame = ig.Game.extend({
     	sounds_avaible: '',
     	sounds_selected: [],
     	money: 2000,
-    	bullets: 5,
-    	items: [EntityHeartsensorItem, EntityCountdownItem]
+    	bullets: 10,
+    	level_fails: 0,
+    	level_win: 0,
+    	target_left: 0,
+    	items: [],
+    	buy: function(item){
+
+    		if(item == 'bullets'){
+	            var price = 500;
+	            var cant = 10;
+
+	            if(ig.game.player.money >= price){
+	                ig.game.player.bullets += cant;
+	                ig.game.player.money -= price;
+	            }
+	        }
+
+	        if(item == 'extra_time'){
+	            var price = 500;
+
+	            if(ig.game.player.money >= price){
+	            	ig.game.player.items.push(EntityCountdownItem);
+	                ig.game.player.money -= price;
+	            }
+	        }
+
+	        if(item == 'heartsensor'){
+	            var price = 500;
+
+	            if(ig.game.player.money >= price){
+	            	ig.game.player.items.push(EntityHeartsensorItem);
+	                ig.game.player.money -= price;
+	            }
+	        }
+
+    	}
     },
 	
 	init: function() {
@@ -46,8 +80,9 @@ MyGame = ig.Game.extend({
 
 		this.levels_manager.append('menu', ig.LevelMenu);
 		this.levels_manager.append('briefing', ig.LevelBriefing);
-        this.levels_manager.append('level1', ig.Level1);        
-//      this.levels_manager.append('gameover', GameOver);
+        this.levels_manager.append('level1', ig.Level1); 
+        this.levels_manager.append('endlevel', ig.LevelEnding);       
+        this.levels_manager.append('gameover', ig.LevelGameOver);
         
 	    this.levels_manager.load('menu');
 	},

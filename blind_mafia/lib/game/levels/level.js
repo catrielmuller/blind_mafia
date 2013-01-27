@@ -57,7 +57,7 @@ ig.BaseLevel = ig.Class.extend({
             var zone = zones.pop();
             zone.sound = ig.game.player.sounds_selected[i];
 
-            console.log("DEBUG: Correct: " + zone.left + " " + zone.top);
+            //console.log("DEBUG: Correct: " + zone.left + " " + zone.top);
                 
             // Y creamos la entidad con esa data
             ig.game.spawnEntity( EntityShooteable, zone.left, zone.top, { 
@@ -90,7 +90,7 @@ ig.BaseLevel = ig.Class.extend({
             width: 64,
             height: 64,
             click: function(){
-                ig.game.levels_manager.load('level1');
+                ig.game.levels_manager.load('endlevel');
 
             }            
         }
@@ -112,9 +112,17 @@ ig.BaseLevel = ig.Class.extend({
         var remaining = Math.floor(ig.game.timer.delta())*(-1);
         if (remaining <= 0){
             // La pantalla deberia terminar, por ahora recargamos el nivel;
-            ig.game.levels_manager.load('level1');
+            ig.game.levels_manager.load('endlevel');
         }
         this.font.draw(remaining, 30, 0, ig.Font.ALIGN.CENTER );
+        this.font.draw(ig.game.player.bullets, 30, 50, ig.Font.ALIGN.CENTER );
+
+        var target_left = ig.game.player.level - (ig.game.player.level_fails + ig.game.player.level_win);
+        if(target_left < 0){
+            target_left = 0;
+        }
+        this.font.draw(target_left, 30, 100, ig.Font.ALIGN.CENTER );
+        
     },
 
     loadzones: function(){

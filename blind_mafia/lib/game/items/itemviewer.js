@@ -95,6 +95,8 @@ EntityItemViewer = ig.Entity.extend({
 
         this.right_button = ig.game.spawnEntity( EntityIVRightButton, 0, 0, {});
 
+        
+        console.log(ig.game.player.items);
         // Iterar sobre todos los items que tenga el player
         this.current_item_index = 0;
         this.player_items = []

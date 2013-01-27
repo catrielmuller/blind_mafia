@@ -70,6 +70,8 @@ ig.LevelBriefing = ig.Class.extend({
 
         ig.game.player.sounds_avaible = sounds;
         ig.game.player.sounds_selected = sounds_selected;
+        ig.game.player.level_fails = 0;
+        ig.game.player.level_win = 0;
 
         ig.music.play("briefing");
     }

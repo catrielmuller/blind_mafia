@@ -70,7 +70,6 @@ EntityShooteable = ig.Entity.extend({
 
         this.currentAnim = this.anims['walking'];
 
-        
         this.addListener( "onMouseOver", this.onMouseOver, this );
         this.addListener( "onMouseOut", this.onMouseOut, this );
         this.addListener( "onClick", this.onClick, this );
@@ -86,7 +85,7 @@ EntityShooteable = ig.Entity.extend({
     },
     onMouseOver: function($this){
 
-        console.log('Estas escuchando el sonido: ' + $this.sound);
+        //console.log('Estas escuchando el sonido: ' + $this.sound);
         
 //         $this.currentAnim = $this.anims[$this.png_alt];
         if($this.state == "alive"){
@@ -112,9 +111,14 @@ EntityShooteable = ig.Entity.extend({
             
             $this.state = "dead";
             if($this.correct){
+                
+                ig.game.player.level_win += 1;
                 console.log('BOOM!');
+
             }
             else {
+
+                ig.game.player.level_fails += 1;
                 console.log('FAIL!');
             }
         }
