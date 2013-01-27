@@ -117,7 +117,15 @@ EntityShooteable = ig.Entity.extend({
             else {
                 console.log('FAIL!');
             }
-        }        
+        }
+        else{
+            if (ig.game.player.bullets == 0){
+                console.log("NO MORE BULLETS!!");
+            }
+            if($this.state == "dead"){
+                console.log("Already dead :(");
+            }
+        }
     },
     
 });
