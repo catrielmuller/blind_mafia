@@ -112,7 +112,7 @@ ig.BaseLevel = ig.Class.extend({
         var remaining = Math.floor(ig.game.timer.delta())*(-1);
         if (remaining <= 0){
             // La pantalla deberia terminar, por ahora recargamos el nivel;
-//             ig.game.levels_manager.load('endlevel');
+            ig.game.levels_manager.load('endlevel');
         }
         this.font.draw(remaining, 30, 0, ig.Font.ALIGN.CENTER );
         this.font.draw(ig.game.player.bullets, 30, 50, ig.Font.ALIGN.CENTER );

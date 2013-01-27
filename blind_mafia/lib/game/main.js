@@ -29,7 +29,7 @@ MyGame = ig.Game.extend({
     levels_manager: new ig.LevelsManager(),
 
     player: {
-    	level: 2,
+    	level: 1,
     	difficult: 3,
     	sounds_avaible: '',
     	sounds_selected: [],

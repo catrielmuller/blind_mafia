@@ -58,7 +58,7 @@ ig.LevelBriefing = ig.Class.extend({
 
         }
         
-        ig.music.fadeOut(10);
+        ig.music.fadeOut(5);
         
     },
 
