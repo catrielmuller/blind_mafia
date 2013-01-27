@@ -8,7 +8,9 @@ ig.module(
 .defines(function(){ "use strict";
 
 ig.LevelMenu = ig.Class.extend({
-    
+
+    font: new ig.Font( 'media/comic_sans_30_red.png' ),
+
 	ready: function(){
 		
 		var start = {
@@ -32,6 +34,7 @@ ig.LevelMenu = ig.Class.extend({
 
     draw: function() {
     	//console.log('draw');
+        this.font.draw("MAIN MENU", 200, 10, ig.Font.ALIGN.CENTER );
     },
     
 });

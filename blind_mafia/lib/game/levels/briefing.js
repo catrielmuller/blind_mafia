@@ -15,16 +15,14 @@ Array.prototype.remove = function(from, to) {
 
 ig.LevelBriefing = ig.Class.extend({
 
+    font: new ig.Font( 'media/comic_sans_30_red.png' ),
 
-    
     ready: function(){
 
         console.log('Estas en el Level ' + ig.game.player.level);
 
         this.newlevel();
 
-
-        
         var start = {
             img: 'media/button.png',
             width: 64,
@@ -48,6 +46,7 @@ ig.LevelBriefing = ig.Class.extend({
 
     draw: function() {
         //console.log('draw');
+        this.font.draw("BRIEFING", 200, 10, ig.Font.ALIGN.CENTER );
     },
 
     newlevel: function(){
