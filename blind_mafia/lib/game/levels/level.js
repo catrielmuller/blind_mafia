@@ -3,6 +3,7 @@ ig.module(
 )
 .requires(
     'impact.impact',
+    'game.items.itemviewer',
     'game.entities.fullimg',
     'game.entities.shooteable'
 )
@@ -35,6 +36,7 @@ ig.BaseLevel = ig.Class.extend({
 			img: this.img_on_top
 		});
 
+        ig.game.spawnEntity( EntityItemViewer, ig.system.width/2, ig.system.height-97, {});
 
         //Difficulty
         this.difficulty = ig.game.player.level * ig.game.player.difficult;
