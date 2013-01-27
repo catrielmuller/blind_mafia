@@ -25,7 +25,7 @@ ig.LevelEnding = ig.Class.extend({
             img: 'media/button.png',
             width: 64,
             height: 64,
-            click: function(){
+            custom_click: function(){
 //              ig.game.player.heart.stop();
                 ig.music.stop();
                 ig.game.levels_manager.load('briefing');
@@ -38,7 +38,7 @@ ig.LevelEnding = ig.Class.extend({
             img: 'media/button.png',
             width: 64,
             height: 64,
-            click: function(){
+            custom_click: function(){
                 ig.game.player.buy('bullets');
             }            
         }        
@@ -48,7 +48,7 @@ ig.LevelEnding = ig.Class.extend({
             img: 'media/button.png',
             width: 64,
             height: 64,
-            click: function(){
+            custom_click: function(){
                 ig.game.player.buy('extra_time');
             }            
         }        
@@ -58,7 +58,7 @@ ig.LevelEnding = ig.Class.extend({
             img: 'media/button.png',
             width: 64,
             height: 64,
-            click: function(){
+            custom_click: function(){
                 ig.game.player.buy('heartsensor');
             }            
         }        

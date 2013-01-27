@@ -28,7 +28,7 @@ ig.LevelBriefing = ig.Class.extend({
             width: 207,
             height: 47,
             over: false,
-            click: function(){
+            custom_click: function(){
 //                 ig.game.player.heart.stop();
                 ig.music.stop();
                 ig.game.levels_manager.load('level1');                

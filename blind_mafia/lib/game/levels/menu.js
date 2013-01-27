@@ -25,7 +25,7 @@ ig.LevelMenu = ig.Class.extend({
             width: 207,
             height: 47,
             over: false,
-            click: function(){
+            custom_click: function(){
                 ig.music.stop();
             	ig.game.levels_manager.load('story');
             }            

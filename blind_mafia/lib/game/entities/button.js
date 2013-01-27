@@ -31,7 +31,7 @@ EntityButton = ig.Entity.extend({
 
             this.parent( x, y, settings );
 
-            this.click_event = settings.click;
+            this.click_event = settings.custom_click;
             this.addAnim( 'idle', 1, [0] );
             this.addAnim( 'over', 1, [1] );
             this.addAnim( 'disable', 1, [2] );
@@ -51,8 +51,7 @@ EntityButton = ig.Entity.extend({
             $this.currentAnim = $this.anims.idle;
         },
         click: function($this){
-            console.log('CLICK!');
-            $this.click_event;
+            $this.click_event();
         },
         
     });
