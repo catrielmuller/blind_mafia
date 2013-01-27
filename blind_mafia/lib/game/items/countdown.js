@@ -39,6 +39,9 @@ EntityCountdownItem = ig.Entity.extend({
     
     use: function() {
         // Add more time to the countdown timer.
+        var remaining = Math.floor(ig.game.timer.delta())*(-1);
+        remaining += 15;
+        ig.game.timer.set( remaining );
     },
     
 });
