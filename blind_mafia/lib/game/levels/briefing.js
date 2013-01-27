@@ -36,7 +36,7 @@ ig.LevelBriefing = ig.Class.extend({
             }            
         }
 
-        ig.game.spawnEntity( EntityButton, 100, 100, start);
+        ig.game.spawnEntity( EntityButton, 646, 403, start);
 
 
     },
