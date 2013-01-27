@@ -86,7 +86,7 @@ ig.LevelBriefing = ig.Class.extend({
 
     newlevel: function(){
 
-        var sounds = [1,2,3,4,5];
+        var sounds = [1,2,3,4,5,6,7,8,9,10];
 
         var selects = ig.game.player.level;
         var sounds_selected = [];
