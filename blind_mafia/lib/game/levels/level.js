@@ -37,8 +37,7 @@ ig.BaseLevel = ig.Class.extend({
 
 
         //Difficulty
-        this.difficulty = ig.game.player.level + 1;
-
+        this.difficulty = ig.game.player.level * ig.game.player.difficult;
 
 		var zones = this.loadzones();
         var zones_amount = zones.length;
@@ -46,28 +45,32 @@ ig.BaseLevel = ig.Class.extend({
         // Mezclamos la lista de zonas
         shuffle(zones);
         shuffle(ig.game.player.sounds_avaible);
-        
+
         // nos quedamos con el ultimo para la zona objetivo
-        var zone = zones.pop();
-        zone.sound = ig.game.player.sounds_selected;
 
-        console.log("DEBUG: Correct: " + zone.left + " " + zone.top);
+        for (var i = ig.game.player.sounds_selected.length - 1; i >= 0; i--) {
+            var zone = zones.pop();
+            zone.sound = ig.game.player.sounds_selected[i];
+
+            console.log("DEBUG: Correct: " + zone.left + " " + zone.top);
+                
+            // Y creamos la entidad con esa data
+            ig.game.spawnEntity( EntityShooteable, zone.left, zone.top, { 
+                    png: 0,
+                    correct: true,
+                    audio:  zone.sound,
+            });
+
             
-        // Y creamos la entidad con esa data
-        ig.game.spawnEntity( EntityShooteable, zone.left, zone.top, { 
-                png: 0,
-                correct: true,
-                audio:  zone.sound,
-        });
+            var added = 1;
+        };
 
-        
-        var added = 1;
-        
+
         // Ahora vamos a agregar las restantes
         
         while (added < this.difficulty && added < zones_amount){
             zone = zones.pop();
-            zone.sound = ig.game.player.sounds_avaible.pop();
+            zone.sound = ig.game.player.sounds_avaible[Math.floor(Math.random()*ig.game.player.sounds_avaible.length)];
             ig.game.spawnEntity( EntityShooteable, zone.left, zone.top, { 
                 png: 0,
                 correct: false,
@@ -77,8 +80,21 @@ ig.BaseLevel = ig.Class.extend({
             added += 1;
         }
 
-        ig.game.sortEntitiesDeferred();
+        var end_buttom = {
+            img: 'media/button.png',
+            width: 64,
+            height: 64,
+            click: function(){
+                ig.game.levels_manager.load('level1');
 
+            }            
+        }
+
+        ig.game.spawnEntity( EntityButton, 750, 400, end_buttom);
+
+
+
+        ig.game.sortEntitiesDeferred();
     },
 
     update: function() {

@@ -11,7 +11,7 @@ EntityCrosshair = ig.Entity.extend({
     
     animSheet: new ig.AnimationSheet( 'media/crosshair.png', 1706, 960 ),
     
-    zIndex: 150,
+    zIndex: 300,
     
     update: function() {
         this.parent();

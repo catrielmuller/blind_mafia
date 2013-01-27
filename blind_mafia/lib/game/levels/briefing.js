@@ -52,17 +52,24 @@ ig.LevelBriefing = ig.Class.extend({
     newlevel: function(){
 
         var sounds = [1,2,3,4,5];
-        var selected = sounds[Math.floor(Math.random()*sounds.length)];
-        var selected_index = sounds.indexOf(selected);
-        sounds.remove(selected_index);
+
+        var selects = ig.game.player.level;
+        var sounds_selected = [];
+
+        for (var i = selects - 1; i >= 0; i--) {
+
+            var selected = sounds[Math.floor(Math.random()*sounds.length)];
+            var selected_index = sounds.indexOf(selected);
+            sounds.remove(selected_index);
+            sounds_selected.push(selected);
+
+        };
 
         ig.game.player.heart = new ig.Sound( 'media/sounds/latido_'+selected+'.ogg', true );
         ig.game.player.heart.play();
 
-        console.log('Debes matar al que tenga el sonido de este corazon: SONIDO ' + selected);
-
         ig.game.player.sounds_avaible = sounds;
-        ig.game.player.sounds_selected = selected;
+        ig.game.player.sounds_selected = sounds_selected;
 
     }
     

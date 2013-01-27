@@ -10,13 +10,22 @@ ig.module(
 .defines(function(){
 
 EntityShooteable = ig.Entity.extend({
-    animSheet: new ig.AnimationSheet( 'media/guy_01.png', 144, 96 ),
+    
     isMouseSensitive: true,
     size: {x:144, y: 96},
     zIndex: 50,
     correct: false,
     sound: '',
     state: "alive",
+    guys: [{
+        url: 'media/guy_01.png',
+        end_walking: 30,
+        end_dying: 38
+    },{
+        url: 'media/guy_02.png',
+        end_walking: 12,
+        end_dying: 30
+    }],
     
     /* isMouseSensitive: true, */
 
@@ -29,10 +38,15 @@ EntityShooteable = ig.Entity.extend({
     },
     
     init: function( x, y, settings ) {
-        this.parent( x, y, settings );
 
+        var select_guy = this.guys[Math.floor(Math.random()*this.guys.length)];
+
+        this.animSheet = new ig.AnimationSheet( select_guy.url , 144, 96 );
+
+        this.parent( x, y, settings );
+        
         var walking = [];
-        for (var i=0;i<30;i++){
+        for (var i=0;i<select_guy.end_walking;i++){
             walking.push(i);
         }
         
@@ -43,9 +57,10 @@ EntityShooteable = ig.Entity.extend({
         var walking_action = walking_spliced.concat(walking);
         
         var dying = [];
-        for (var i=30;i<38;i++){
+        for (var i=select_guy.end_walking;i<select_guy.end_dying;i++){
             dying.push(i);
         }
+
         this.addAnim( 'walking', 0.08, walking_action );
         this.addAnim( 'dying', 0.05, dying, true );
 //         this.addAnim( 'dead', 0.1, [37] );
@@ -71,7 +86,7 @@ EntityShooteable = ig.Entity.extend({
     },
     onMouseOver: function($this){
 
-        //console.log('Estas escuchando el sonido: ' + $this.sound);
+        console.log('Estas escuchando el sonido: ' + $this.sound);
         
 //         $this.currentAnim = $this.anims[$this.png_alt];
         if($this.state == "alive"){
@@ -82,7 +97,17 @@ EntityShooteable = ig.Entity.extend({
     onClick: function($this){
         $this.heart.stop();
         
-        if($this.state == "alive"){
+        if(ig.game.player.bullets > 0){
+            ig.game.player.bullets -= 1;            
+        }
+        else {
+            //SOund CLIPPPPP            
+        }
+
+        //console.log(ig.game.player.bullets);
+        
+        if($this.state == "alive" && ig.game.player.bullets > 0){
+
             $this.currentAnim = $this.anims.dying.rewind();
             
             $this.state = "dead";

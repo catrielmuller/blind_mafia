@@ -12,6 +12,7 @@ EntityButton = ig.Entity.extend({
         /* animSheet: new ig.AnimationSheet( 'media/tiles.png', 32, 32 ),*/
         isMouseSensitive: true,
         size: {x:64, y:64},
+        zIndex: 200,
         collides: ig.Entity.COLLIDES.FIXED,
         click_event: function(){},
 

@@ -25,9 +25,13 @@ MyGame = ig.Game.extend({
     levels_manager: new ig.LevelsManager(),
 
     player: {
-    	level: 4,
+    	level: 1,
+    	difficult: 3,
     	sounds_avaible: '',
-    	sounds_selected: 0
+    	sounds_selected: [],
+    	money: 2000,
+    	bullets: 5,
+    	items: []
     },
 	
 	init: function() {
