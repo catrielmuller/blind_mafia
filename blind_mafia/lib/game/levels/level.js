@@ -108,7 +108,7 @@ ig.BaseLevel = ig.Class.extend({
         ig.game.spawnEntity( EntityButton, 750, 400, end_buttom);
         
         ig.game.timer = new ig.Timer();
-        ig.game.timer.set( this.timeout );
+        ig.game.timer.set( this.timeout * ig.game.player.level * 2 );
         
         ig.game.sortEntitiesDeferred();
     },
